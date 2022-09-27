@@ -1,3 +1,4 @@
+import streamlit as st
 from streamlit.components.v1 import html
 import pandas as pd
 from ipyvizzu import Chart, Data, Config, Style
