@@ -8,7 +8,7 @@ st.title('🎈 ipyvizzu')
 def create_chart():
 
     data_frame = pd.read_csv(
-    "../../data/chart_types_eu.csv", dtype={"Year": str, "Timeseries": str}
+    "https://raw.githubusercontent.com/vizzuhq/ipyvizzu/gh-pages/docs/data/chart_types_eu.csv", dtype={"Year": str, "Timeseries": str}
     )
     data = Data()
     data.add_data_frame(data_frame)
