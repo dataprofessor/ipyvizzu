@@ -7,36 +7,32 @@ st.title('🎈 ipyvizzu')
 
 def create_chart():
 
-    data_frame = pd.read_csv(
-    "https://raw.githubusercontent.com/vizzuhq/ipyvizzu/gh-pages/docs/data/chart_types_eu.csv", dtype={"Year": str, "Timeseries": str}
-    )
+    # initialize chart
+
+    chart = Chart(width="640px", height="360px", display="manual")
+
+
+    # add data
+
     data = Data()
+    data_frame = pd.read_csv("https://github.com/vizzuhq/ipyvizzu/raw/main/docs/examples/stories/titanic/titanic.csv")
     data.add_data_frame(data_frame)
 
-    chart = Chart()
     chart.animate(data)
 
-    chart.animate(
-        data.filter(
-            """
-      [ 'AT', 'BE', 'DE', 'DK', 'ES' ]
-      .includes(record.Country_code)
-      """
-        ),
-        Config(
-            {
-                "channels": {
-                    "x": {"set": ["Value 3 (+)", "Country"]},
-                    "y": {"set": ["Year", "Joy factors"]},
-                    "color": {"set": ["Country"]},
-                },
-                "title": "Stacked Bar Chart",
-            }
-        ),
-    )
 
-    chart.animate(Config({"title": "Trellis Bar Chart", "split": True}))
-    
+    # add config
+
+    chart.animate(Config({"x": "Count", "y": "Sex", "label": "Count","title":"Passengers of the Titanic"}))
+    chart.animate(Config({"x": ["Count","Survived"], "label": ["Count","Survived"], "color": "Survived"}))
+    chart.animate(Config({"x": "Count", "y": ["Sex","Survived"]}))
+
+
+    # add style
+
+    chart.animate(Style({"title": {"fontSize": 35}}))
+
+
     return chart._repr_html_()
 
 
