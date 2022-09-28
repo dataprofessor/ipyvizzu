@@ -41,6 +41,6 @@ def create_chart():
     return chart._repr_html_()
 
 
-create_chart()
+CHART = create_chart()
 
-
+html(CHART, width=650, height=370)
