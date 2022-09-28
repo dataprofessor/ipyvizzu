@@ -7,15 +7,12 @@ st.title('🎈 ipyvizzu')
 
 def create_chart():
 
-    # Initialize chart
-    chart = Chart(width="640px", height="360px", display="manual")
-
-    # Data
-    data_frame = pd.read_csv("https://raw.githubusercontent.com/vizzuhq/ipyvizzu/gh-pages/docs/data/chart_types_eu.csv", dtype={"Year": str, "Timeseries": str})
+    data_frame = pd.read_csv(
+    "../../data/chart_types_eu.csv", dtype={"Year": str, "Timeseries": str}
+    )
     data = Data()
     data.add_data_frame(data_frame)
 
-    # Chart
     chart = Chart()
     chart.animate(data)
 
@@ -38,6 +35,8 @@ def create_chart():
         ),
     )
 
+    chart.animate(Config({"title": "Trellis Bar Chart", "split": True}))
+    
     return chart._repr_html_()
 
 
